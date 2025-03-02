@@ -1,25 +1,24 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 const useRecipeStore = create((set) => ({
-  recipes: [], // Initial empty array
+  recipes: [
+    { id: 1, title: "Jollof Rice", description: "A delicious Nigerian rice dish." },
+    { id: 2, title: "Egusi Soup", description: "A rich melon seed soup." }
+  ],
 
-  // ✅ Add a new recipe
-  addRecipe: (recipe) =>
-    set((state) => ({ recipes: [...state.recipes, recipe] })),
+  addRecipe: (newRecipe) => set((state) => ({
+    recipes: [...state.recipes, { id: Date.now(), ...newRecipe }]
+  })),
 
-  // ✅ Update an existing recipe
-  updateRecipe: (updatedRecipe) =>
-    set((state) => ({
-      recipes: state.recipes.map((recipe) =>
-        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
-      ),
-    })),
+  updateRecipe: (id, updatedRecipe) => set((state) => ({
+    recipes: state.recipes.map(recipe =>
+      recipe.id === id ? { ...recipe, ...updatedRecipe } : recipe
+    )
+  })),
 
-  // ✅ Delete a recipe
-  deleteRecipe: (recipeId) =>
-    set((state) => ({
-      recipes: state.recipes.filter((recipe) => recipe.id !== recipeId),
-    })),
+  deleteRecipe: (id) => set((state) => ({
+    recipes: state.recipes.filter(recipe => recipe.id !== id)
+  }))
 }));
 
 export default useRecipeStore;

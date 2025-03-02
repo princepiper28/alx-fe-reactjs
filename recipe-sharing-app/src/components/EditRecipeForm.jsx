@@ -4,7 +4,7 @@ import useRecipeStore from "../store/recipeStore";
 const EditRecipeForm = ({ recipe }) => {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
-  const updateRecipe = useRecipeStore((state) => state.updateRecipe);
+  const updateRecipe = useRecipeStore(state => state.updateRecipe);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,8 +14,8 @@ const EditRecipeForm = ({ recipe }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} />
-      <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+      <input value={title} onChange={(e) => setTitle(e.target.value)} required />
+      <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
       <button type="submit">Update Recipe</button>
     </form>
   );

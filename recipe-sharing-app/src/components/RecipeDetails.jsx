@@ -6,8 +6,8 @@ import DeleteRecipeButton from "./DeleteRecipeButton";
 const RecipeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const recipe = useRecipeStore((state) =>
-    state.recipes.find((recipe) => recipe.id === id)
+  const recipe = useRecipeStore(state =>
+    state.recipes.find(recipe => recipe.id === parseInt(id))
   );
 
   if (!recipe) return <p>Recipe not found!</p>;
@@ -17,7 +17,7 @@ const RecipeDetails = () => {
       <h1>{recipe.title}</h1>
       <p>{recipe.description}</p>
       <EditRecipeForm recipe={recipe} />
-      <DeleteRecipeButton id={recipe.id} onDelete={() => navigate("/")} />
+      <DeleteRecipeButton recipeId={recipe.id} navigate={navigate} />
     </div>
   );
 };
