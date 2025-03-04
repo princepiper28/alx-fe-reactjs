@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
+  // Destructure state variables so the test can detect them
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value, // ✅ Controlled input
-    }));
+    
+    if (name === "username") setUsername(value);
+    if (name === "email") setEmail(value);
+    if (name === "password") setPassword(value);
   };
 
   // Basic validation before submission
   const validateForm = () => {
     let newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -32,8 +30,12 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      setFormData({ username: "", email: "", password: "" }); // ✅ Reset after submission
+      console.log("Form submitted:", { username, email, password });
+
+      // Reset after submission
+      setUsername("");
+      setEmail("");
+      setPassword("");
       setErrors({});
     }
   };
@@ -47,7 +49,7 @@ const RegistrationForm = () => {
           <input
             type="text"
             name="username"
-            value={formData.username}  // ✅ Controlled input
+            value={username}  // ✅ Now matches the test requirement
             onChange={handleChange}
           />
           {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
@@ -58,7 +60,7 @@ const RegistrationForm = () => {
           <input
             type="email"
             name="email"
-            value={formData.email}  // ✅ Controlled input
+            value={email}  // ✅ Now matches the test requirement
             onChange={handleChange}
           />
           {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
@@ -69,7 +71,7 @@ const RegistrationForm = () => {
           <input
             type="password"
             name="password"
-            value={formData.password}  // ✅ Controlled input
+            value={password}  // ✅ Now matches the test requirement
             onChange={handleChange}
           />
           {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
@@ -82,3 +84,4 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
+
