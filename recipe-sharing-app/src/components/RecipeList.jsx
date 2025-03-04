@@ -5,6 +5,7 @@ import useRecipeStore from '../store/recipeStore';
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
   const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+  const addFavorite = useRecipeStore((state) => state.addFavorite);
 
   // Choose to display filtered results if available, otherwise show all recipes
   const displayedRecipes = filteredRecipes.length > 0 ? filteredRecipes : recipes;
@@ -25,7 +26,14 @@ const RecipeList = () => {
           ))}
         </ul>
       )}
+      <button 
+            onClick={() => addFavorite(recipe.id)} 
+            disabled={favorites.includes(recipe.id)}
+          >
+            {favorites.includes(recipe.id) ? "Favorited" : "Add to Favorites"}
+          </button>
     </div>
+    
   );
 };
 
