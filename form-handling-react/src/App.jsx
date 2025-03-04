@@ -15,7 +15,10 @@ function App() {
       <hr />
       <FormikForm />
     </div>
-
+    <div>
+      <h1>Welcome to the Registration Page</h1>
+      <FormikForm />
+    </div>
       
     </>
   )
