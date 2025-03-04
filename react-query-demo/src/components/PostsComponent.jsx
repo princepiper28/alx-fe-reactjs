@@ -18,7 +18,8 @@ const PostsComponent = () => {
 
   if (isLoading) return <p>Loading posts...</p>;
   if (error) return <p>Error fetching posts: {error.message}</p>;
-
+  if (isError) return <p style={{ color: "red" }}>Error: {error.message}</p>; // ✅ Fix: Handle errors properly
+ 
   return (
     <div>
       <h2>Posts</h2>
