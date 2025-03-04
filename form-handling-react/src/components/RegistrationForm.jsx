@@ -15,7 +15,7 @@ const RegistrationForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Validate form before submission
+  // Basic validation before submission
   const validateForm = () => {
     let newErrors = {};
     if (!formData.username) newErrors.username = "Username is required";
@@ -77,4 +77,3 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
-
