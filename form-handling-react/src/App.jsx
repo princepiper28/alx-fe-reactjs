@@ -19,7 +19,8 @@ function App() {
       <h1>Welcome to the Registration Page</h1>
       <FormikForm />
     </div>
-      
+    <button onClick={() => refetch()}>🔄 Refresh Posts</button>
+
     </>
   )
 }
