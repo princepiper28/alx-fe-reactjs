@@ -7,7 +7,7 @@ import Post from "./pages/Post.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BlogPost from "./pages/BlogPost"; // Import the BlogPost component
+import BlogPost from "./pages/BlogPost.jsx"; // Import the BlogPost component
 
 function App() {
   const [count, setCount] = useState(0)
