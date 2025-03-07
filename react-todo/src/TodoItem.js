@@ -1,3 +1,4 @@
+// src/TodoItem.js
 import React from "react";
 
 const TodoItem = ({ todo, toggleTodo, deleteTodo }) => {
@@ -10,14 +11,10 @@ const TodoItem = ({ todo, toggleTodo, deleteTodo }) => {
       }}
     >
       {todo.text}
-      <button onClick={(e) => { 
-        e.stopPropagation(); // Prevent triggering toggle
-        deleteTodo(todo.id); 
-      }}>
-        ❌
-      </button>
+      <button onClick={(e) => { e.stopPropagation(); deleteTodo(todo.id); }}>❌</button>
     </li>
   );
 };
 
 export default TodoItem;
+
