@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import TodoItem from "./TodoItem";
-import AddTodo from "./AddTodo"; // ✅ Import AddTodo
+import TodoItem from "./TodoItem.js";
+import AddTodo from "./AddTodo.js"; // ✅ Import AddTodo
 
 const TodoList = () => {
   const [todos, setTodos] = useState([
