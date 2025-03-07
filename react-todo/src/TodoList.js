@@ -33,18 +33,9 @@ const TodoList = () => {
     <div>
       <h2>Todo List</h2>
       <AddTodoForm addTodo={addTodo} />
-      {/* ✅ Use AddTodo component */}
-      <AddTodo addTodo={addTodo} />
-
       <ul>
-        {todos.map((todo) => (
-            
-          <TodoItem 
-            key={todo.id} 
-            todo={todo} 
-            toggleTodo={toggleTodo} 
-            deleteTodo={deleteTodo} 
-          />
+        {todos.map(todo => (
+          <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
         ))}
       </ul>
     </div>
