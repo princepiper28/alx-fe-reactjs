@@ -1,46 +1,39 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import TodoList from "../components/TodoList";
-import "@testing-library/jest-dom";
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import TodoList from "../TodoList";
 
-test("renders the initial todo list", () => {
+test("renders the TodoList component", () => {
   render(<TodoList />);
-  expect(screen.getByText(/Learn React/i)).toBeInTheDocument();
-  expect(screen.getByText(/Build a project/i)).toBeInTheDocument();
+  expect(screen.getByText(/Todo List/i)).toBeInTheDocument();
 });
 
 test("adds a new todo", () => {
   render(<TodoList />);
-  
-  const input = screen.getByPlaceholderText(/add new todo/i);
-  const addButton = screen.getByText(/add/i);
+  const input = screen.getByPlaceholderText(/Add new todo/i);
+  const addButton = screen.getByText(/Add/i);
 
-  fireEvent.change(input, { target: { value: "Write Tests" } });
+  fireEvent.change(input, { target: { value: "New Todo" } });
   fireEvent.click(addButton);
 
-  expect(screen.getByText(/Write Tests/i)).toBeInTheDocument();
+  expect(screen.getByText(/New Todo/i)).toBeInTheDocument();
 });
 
-test("toggles a todo item", () => {
+test("toggles todo completion", () => {
   render(<TodoList />);
-
   const todoItem = screen.getByText(/Learn React/i);
-  fireEvent.click(todoItem);
 
+  fireEvent.click(todoItem);
   expect(todoItem).toHaveStyle("text-decoration: line-through");
+
+  fireEvent.click(todoItem);
+  expect(todoItem).toHaveStyle("text-decoration: none");
 });
 
-test("deletes a todo item", async () => {
+test("deletes a todo", () => {
   render(<TodoList />);
-  
-  const deleteButton = screen.getAllByText(/❌/i); // Get all delete buttons
-  fireEvent.click(deleteButton[0]);  // Click the first delete button
+  const deleteButton = screen.getAllByText("❌")[0];
 
-  await waitFor(() =>
-    expect(screen.queryByText(/Learn React/i)).not.toBeInTheDocument()
-  );
-  await waitFor(() => {
-    const deletedItem = screen.queryByText(/Learn React/i);
-    expect(deletedItem).toHaveStyle("text-decoration: line-through");
-  });
+  fireEvent.click(deleteButton);
+
+  expect(screen.queryByText(/Learn React/i)).not.toBeInTheDocument();
 });

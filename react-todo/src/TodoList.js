@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TodoItem from "./TodoItem";
 import AddTodo from "./AddTodo"; // ✅ Import AddTodo
+import AddTodoForm from "./AddTodoForm";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([
@@ -31,12 +32,13 @@ const TodoList = () => {
   return (
     <div>
       <h2>Todo List</h2>
-
+      <AddTodoForm addTodo={addTodo} />
       {/* ✅ Use AddTodo component */}
       <AddTodo addTodo={addTodo} />
 
       <ul>
         {todos.map((todo) => (
+            
           <TodoItem 
             key={todo.id} 
             todo={todo} 
