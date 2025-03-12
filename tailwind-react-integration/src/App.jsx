@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,6 +11,9 @@ function App() {
     <>
     <div className="min-h-screen flex items-center justify-center bg-blue-500 text-white">
       <h1 className="text-3xl font-bold">Hello, Tailwind CSS!</h1>
+    </div>
+    <div>
+      <UserProfile />
     </div>
       <div>
         <a href="https://vite.dev" target="_blank">
