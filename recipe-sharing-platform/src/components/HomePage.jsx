@@ -11,7 +11,16 @@ const HomePage = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-8 text-center text-green-700">Recipe Sharing Platform</h2>
+      <div className="flex justify-center mb-6">
+        <Link to="/add-recipe">
+          <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+            Add New Recipe
+          </button>
+        </Link>
+      </div>
+      <h2 className="text-3xl font-bold mb-8 text-center text-green-700">
+        Recipe Sharing Platform
+      </h2>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {recipes.map((recipe) => (
           <Link to={`/recipe/${recipe.id}`} key={recipe.id}>
@@ -34,3 +43,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
