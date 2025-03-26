@@ -1,12 +1,14 @@
-import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Search from './components/Search';
 
-const App = () => {
+function App() {
   return (
-    <div className="p-6 text-center">
-      <h1 className="text-3xl font-bold mb-4 text-blue-600">GitHub User Search Application</h1>
-      <p>Start building your search component here!</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Search />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
